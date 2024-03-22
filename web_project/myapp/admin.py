@@ -1,8 +1,12 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
-admin.site.register(Food)
+class FoodAdmin(admin.ModelAdmin):
+    list_display = ( "food_id", "food_name", "price", "image")
+    search_fields = ("food_name", )
+    list_filter = ("food_name", "price", )
+admin.site.register(Food, FoodAdmin)
+
 admin.site.register(Category)
 admin.site.register(Order)
 admin.site.register(OrderItem)

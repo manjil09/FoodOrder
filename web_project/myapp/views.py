@@ -1,13 +1,11 @@
-from unicodedata import category
-from django.shortcuts import render
 from django.http import Http404
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import permissions, generics, status
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.permissions import AllowAny
 
 from myapp.models import Category, CustomUser,Food, Order, OrderItem
 from myapp.serializers import CategorySerializer, MyTokenObtainPairSerializer, OrderItemSerializer, OrderSerializer, ProfileSerializer, RegisterSerializer,FoodSerializer
@@ -25,7 +23,7 @@ class RegisterView(generics.CreateAPIView):
 
 
 class FoodView(APIView):
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
     def get_object(self, pk):
         try:
             return Food.objects.get(pk=pk)
@@ -35,6 +33,13 @@ class FoodView(APIView):
     def get(self, request):
         foods = Food.objects.all()
         serializer = FoodSerializer(foods, many=True)
+        # return render(request, 'foods.html', {'foods': foods})
+        return Response({"Food":serializer.data})
+    
+    def get(self, request, pk, format=None):
+        food = self.get_object(pk=pk)
+        serializer = FoodSerializer(food)
+        # return render(request, 'foods.html', {'foods': foods})
         return Response({"Food":serializer.data})
     
     def post(self, request):

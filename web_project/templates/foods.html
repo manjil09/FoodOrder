@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block title %}Foods{% endblock %}
+
+{% block content %}
+<h2>Foods</h2>
+<ul>
+    {% for food in foods %}
+    <li>{{ food.food_name }} - {{ food.description }} - {{ food.price }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

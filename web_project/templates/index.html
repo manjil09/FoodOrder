@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Canteen Preorder{% endblock %}</title>
+</head>
+<body>
+    <div id="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{% url 'food_list' %}">Foods</a></li>
+                <li><a href="{% url 'category_list' %}">Categories</a></li>
+                <li><a href="{% url 'order_detail' %}">Orders</a></li>
+                <li><a href="{% url 'orderitem_detail' %}">Order Items</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

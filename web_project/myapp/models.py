@@ -17,6 +17,9 @@ class Food(models.Model):
     variety_options = models.CharField(max_length=255)
     category_id = models.ForeignKey('Category', on_delete=models.CASCADE)
 
+    def __str__ (self):
+        return self.food_name
+
 # class VarietyOption(models.Model):
 #     variety_id = models.AutoField(primary_key=True)
 #     variety_name = models.CharField(max_length=100)
@@ -26,6 +29,9 @@ class Food(models.Model):
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=50, unique = True)
+    
+    def __str__ (self):
+        return self.category_name
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
